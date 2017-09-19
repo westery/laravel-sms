@@ -6,8 +6,8 @@ return [
     'agents' => [
         //网易短信
         'NetEase' => [
-            'appId' => env('NETEASE_APPID','your netease appid'),
-            'appKey' => env('NETEASE_APPKEY','you netease appkey'),
+            'appKey' => env('NETEASE_APPKEY','your netease appkey'),
+            'appSecret' => env('NETEASE_APPSECRET','you netease appsecret'),
         ],
 
     ],

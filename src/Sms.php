@@ -120,7 +120,7 @@ class Sms
     {
         if($this->config === 'NetEase'){
             $_config = config('sms.agents.'.$this->config);
-            $rest = new NetEase($_config['appId'],$_config['appKey']);
+            $rest = new NetEase($_config['appKey'],$_config['appSecret']);
             return  $rest->sendSMSTemplate($this->smsData['templates']['NetEase'],$this->smsData['to'],$this->smsData['templateData']);
 
         } else {
