@@ -10,6 +10,7 @@ use Westery\LaravelSms\lib\NetEase;
  */
 class Sms
 {
+
     protected $smsData = [
         'to'           => null,
         'templates'    => [],
@@ -121,6 +122,10 @@ class Sms
         if($this->config === 'NetEase'){
             $_config = config('sms.agents.'.$this->config);
             $rest = new NetEase($_config['appKey'],$_config['appSecret']);
+
+            if($this->smsData['templates']['NetEase'] == 9999){
+                return $rest->sendSmsCode($this->smsData['to'],$this->smsData['templateData']['code']);
+            }
             return  $rest->sendSMSTemplate($this->smsData['templates']['NetEase'],$this->smsData['to'],$this->smsData['templateData']);
 
         } else {

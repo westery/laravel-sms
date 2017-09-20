@@ -78,7 +78,6 @@ class NetEase{
      */
     public function postDataCurl($url,$data){
         $this->checkSumBuilder();//发送请求前需先生成checkSum
-
         $timeout = 5000;
         $http_header = array(
             'AppKey:'.$this->AppKey,
@@ -180,11 +179,11 @@ class NetEase{
 
     /**
      * 发送短信验证码
-     * @param $mobile  [手机号]
+     * @param  $mobile  [手机号]
      * @param $code   [验证码]
      * @return array
      */
-    protected function sendSmsCode($mobile,$code){
+    public function sendSmsCode($mobile,$code){
         $url = 'https://api.netease.im/sms/sendcode.action';
         $data = array('mobile'=>$mobile,'authCode'=>$code);
         if($this->RequestType=='curl'){
