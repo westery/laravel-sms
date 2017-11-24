@@ -1,6 +1,7 @@
 <?php
 
 namespace Westery\LaravelSms;
+use Westery\LaravelSms\lib\Aliyun;
 use Westery\LaravelSms\lib\NetEase;
 
 /**
@@ -128,7 +129,12 @@ class Sms
             }
             return  $rest->sendSMSTemplate($this->smsData['templates']['NetEase'],$this->smsData['to'],$this->smsData['templateData']);
 
-        } else {
+        } elseif($this->config === 'Aliyun'){
+            $_config = config('sms.agents.'.$this->config);
+            $rest = new Aliyun($_config['appKey'],$_config['appSecret'],$_config['signName']);
+            return $rest->sendSMSTemplate($this->smsData['templates'][$this->config],$this->smsData['to'],$this->smsData['templateData']);
+
+        } else{
             throw new \Exception('make sure you have choose a right agent');
         }
     }

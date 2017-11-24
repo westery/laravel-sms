@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Facade as LaravelFacade;
 /**
  * Class Sms.
  *
- * @see \Westery\LaravelSms\SmsServiceProvider
+ * @see \Westery\LaravelSms\WechatAppServiceProvider
  */
 class Sms extends LaravelFacade
 {
