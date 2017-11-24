@@ -13,7 +13,7 @@
     "require": {
         "php": ">=5.5.0",
         "illuminate/console": "~5.0",
-        "westery/aliyun-dysms-php-sdk":"dev-master"
+        "westery/aliyun-dysms-php-sdk":"*"
     },
     "autoload": {
         "psr-4": {
