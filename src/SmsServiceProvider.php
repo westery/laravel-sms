@@ -33,7 +33,7 @@ class SmsServiceProvider extends ServiceProvider
             __DIR__.'/config/sms.php', 'sms'
         );
         $this->app->singleton('Sms', function ($app) {
-            $app = new WechatApp(config('sms.default'));
+            $app = new Sms(config('sms.default'));
             return $app;
         });
     }
