@@ -42,15 +42,19 @@ class Aliyun{
 
     /**
      * 发送模板短信
-     * @param $templateid [模板编号(由客服配置之后告知开发者)]
-     * @param array $mobiles [手机号]
-     * @param string $params [短信参数列表，用于依次填充模板，JSONArray格式，如["xxx","yyy"];对于不包含变量的模板，不填此参数表示模板即短信全文内容]
+     * @param $templateid
+     * @param $mobiles array | string
+     * @param array $params
      * @return array
      */
-    public function sendSMSTemplate($templateid,$mobiles=array(),$params=''){
+    public function sendSMSTemplate($templateid,$mobiles,$params=[]){
         // 初始化SendSmsRequest实例用于设置发送短信的参数
         $request = new SendSmsRequest();
-        $phone = implode(',',$mobiles);
+        if(is_array($mobiles)){
+            $phone = implode(',',$mobiles);
+        }else{
+            $phone = $mobiles;
+        }
         // 必填，设置短信接收号码
         $request->setPhoneNumbers($phone);
         // 必填，设置签名名称
@@ -59,6 +63,7 @@ class Aliyun{
         $request->setTemplateCode($templateid);
         // 可选，设置模板参数
         if(!empty($params)) {
+            $params = json_encode($params);
             $request->setTemplateParam($params);
         }
         // 发起请求
